@@ -9,17 +9,10 @@ var myApp = angular.module('myApp', [
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/view1'});
-}]).
-factory('Data', [function(){
-	return {
-		message: 'data from the root app servioce'
+}]);
+
+function AppController($scope) {
+	$scope.data = {
+		message: "hello"
 	};
-}])
-
-function AppController($scope, Data) {
-	$scope.data = Data;
-}
-
-function SecondAppController($scope, Data) {
-	$scope.data = Data;
 }
