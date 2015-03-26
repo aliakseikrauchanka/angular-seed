@@ -27,6 +27,9 @@ config(['$routeProvider', function($routeProvider) {
 
 function AppController($scope, Data) {
 	$scope.data = Data;
+	$scope.reversedMessage = function reversedMessage(str) {
+		return str.split('').reverse().join('');
+	};
 }
 
 function SecondAppController($scope, Data) {
