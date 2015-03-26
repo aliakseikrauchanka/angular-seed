@@ -12,7 +12,7 @@ config(['$routeProvider', function($routeProvider) {
 }]);
 
 function AppController($scope) {
-	$scope.data = {
-		message: "hello"
-	};
+}
+
+function SecondAppController($scope) {
 }
