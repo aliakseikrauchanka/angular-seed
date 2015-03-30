@@ -25,13 +25,13 @@
   <![endif]-->
 
   <div ng-controller="AppController">
-    <input type="text" ng-model="data.message">
-    <h1>{{data.message | reverse}}</h1>
-  </div>
-
-  <div ng-controller="SecondAppController">
-    <input type="text" ng-model="data.message">
-    <h1>{{data.message}}</h1>
+    <table>
+      <input type="text" ng-model="searchFilter.id">
+       <tr ng-repeat="man in data.menArray | filter:searchFilter">
+          <td>{{man.name}}</td>
+          <td>{{man.id}}</td>
+      </tr>
+    </table>
   </div>
 
 

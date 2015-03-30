@@ -11,29 +11,28 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/view1'});
 }])
 .factory('Data', function(){
-	return {
-		message: "init message from factory"
-	};
-})
-.factory('Data2', function(){
+	var Data = {};
 
-	return {
-		message2: "init messages2 from factory2"
-	};
+	Data.tField = 'field';
+	Data.menArray = [
+		{
+			name: 'Henrick',
+			id: 1
+		},
+		{
+			name: 'Erick',
+			id: 2
+		},
+		{
+			name: 'Patrick',
+			id: 3
+		},
+	];
 
-})
-.filter('reverse', function() {
-	return function reversedMessage(str) {
-		return str.split('').reverse().join('');
-	};
+	return Data;
 });
 
 
-
 function AppController($scope, Data) {
-	$scope.data = Data;
-}
-
-function SecondAppController($scope, Data) {
 	$scope.data = Data;
 }
