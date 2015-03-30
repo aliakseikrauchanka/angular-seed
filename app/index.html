@@ -27,8 +27,15 @@
   <div ng-controller="AppController">
     <table>
       <input type="text" ng-model="searchFilter.id">
-       <tr ng-repeat="man in data.menArray | filter:searchFilter">
-          <td>{{man.name}}</td>
+       <tr ng-repeat="man in data.menArray | orderBy:'-name'">
+          <td>{{man.name | uppercase}}</td>
+          <td>{{man.id}}</td>
+      </tr>
+    </table>
+    <h1>break</h1>
+    <table>
+      <tr ng-repeat="man in data.menArray | orderBy:'name' | limitTo:-2 | filter:searchFilter">
+          <td>{{man.name | uppercase}}</td>
           <td>{{man.id}}</td>
       </tr>
     </table>
