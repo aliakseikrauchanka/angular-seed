@@ -21,15 +21,17 @@ config(['$routeProvider', function($routeProvider) {
 		message2: "init messages2 from factory2"
 	};
 
-}) ;
+})
+.filter('reverse', function() {
+	return function reversedMessage(str) {
+		return str.split('').reverse().join('');
+	};
+});
 
 
 
 function AppController($scope, Data) {
 	$scope.data = Data;
-	$scope.reversedMessage = function reversedMessage(str) {
-		return str.split('').reverse().join('');
-	};
 }
 
 function SecondAppController($scope, Data) {
