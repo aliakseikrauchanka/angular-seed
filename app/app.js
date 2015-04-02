@@ -37,20 +37,11 @@ config(['$routeProvider', function ($routeProvider) {
 		template: '<div>Superma is here</div>'
 	};
 })
-.directive('supermanattribute', function () {
-	return {
-		restrict: 'A',
-		link: function () {
-			console.log('attribute');
-		}
-	};
-})
-.directive('supermanClass', function () {
-	return {
-		restrict: 'C',
-		link: function () {
-			alert('class');
-		}
+.directive('click', function () {
+	return function (scope, element) {
+		element.bind('click', function () {
+			console.log('cliked on element');
+		});
 	};
 });
 
