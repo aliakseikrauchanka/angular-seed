@@ -31,30 +31,61 @@ config(['$routeProvider', function ($routeProvider) {
 
 	return Data;
 })
-.directive('superman', function () {
+.directive('man', function () {
 	return {
+		scope: {},
 		restrict: 'E',
-		template: '<div>Superma is here</div>'
+		controller: function ($scope) {
+			$scope.parts = [];
+
+			this.addHead = function () {
+				$scope.parts.push('head');
+			};
+			this.addArm = function () {
+				$scope.parts.push('arm');
+			};
+			this.addFoot = function () {
+				$scope.parts.push('foot');
+			};
+
+		},
+		link: function (scope, element) {
+			element.bind('mouseenter', function () {
+				console.log(scope.parts);
+			});
+		}
+	};
+});
+
+myApp.directive('arm', function () {
+	return {
+		require: 'man',
+		link: function  (scope, element, attr, man) {
+			man.addArm();
+		}
 	};
 })
-.directive('enter', function () {
-	return function (scope, element, attr) {
-		element.bind('mouseenter', function () {
-			scope.$apply(attr.enter);
-		});
+.directive('head', function () {
+	return {
+		require: 'man',
+		link: function  (scope, element, attr, man) {
+			man.addHead();
+		}
 	};
 })
-.directive('leave', function () {
-	return function (scope, element, attr) {
-		element.bind('mouseleave', function () {
-			// element.removeClass(attr.enter);
-		});
+.directive('foot', function () {
+	return {
+		require: 'man',
+		link: function  (scope, element, attr, man) {
+			man.addFoot();
+		}
 	};
 })
+
 .controller('AppController', function ($scope, Data) {
 	$scope.data = Data;
 
 	$scope.loadData = function () {
-		alert('loadData');
+		console.log('loadData');
 	};
 });
