@@ -7,10 +7,10 @@ var myApp = angular.module('myApp', [
   'myApp.view2',
   'myApp.version'
 ]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
+config(['$routeProvider', function ($routeProvider) {
+	$routeProvider.otherwise({redirectTo: '/view1'});
 }])
-.factory('Data', function(){
+.factory('Data', function () {
 	var Data = {};
 
 	Data.tField = 'field';
@@ -30,8 +30,29 @@ config(['$routeProvider', function($routeProvider) {
 	];
 
 	return Data;
+})
+.directive('superman', function () {
+	return {
+		restrict: 'E',
+		template: '<div>Superma is here</div>'
+	};
+})
+.directive('supermanattribute', function () {
+	return {
+		restrict: 'A',
+		link: function () {
+			console.log('attribute');
+		}
+	};
+})
+.directive('supermanClass', function () {
+	return {
+		restrict: 'C',
+		link: function () {
+			alert('class');
+		}
+	};
 });
-
 
 function AppController($scope, Data) {
 	$scope.data = Data;
