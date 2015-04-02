@@ -37,10 +37,17 @@ config(['$routeProvider', function ($routeProvider) {
 		template: '<div>Superma is here</div>'
 	};
 })
-.directive('click', function () {
-	return function (scope, element) {
-		element.bind('click', function () {
-			console.log('cliked on element');
+.directive('enter', function () {
+	return function (scope, element, attr) {
+		element.bind('mouseenter', function () {
+			element.addClass(attr.enter);
+		});
+	};
+})
+.directive('leave', function () {
+	return function (scope, element, attr) {
+		element.bind('mouseleave', function () {
+			element.removeClass(attr.enter);
 		});
 	};
 });
