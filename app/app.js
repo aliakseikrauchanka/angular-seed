@@ -40,18 +40,21 @@ config(['$routeProvider', function ($routeProvider) {
 .directive('enter', function () {
 	return function (scope, element, attr) {
 		element.bind('mouseenter', function () {
-			element.addClass(attr.enter);
+			scope.$apply(attr.enter);
 		});
 	};
 })
 .directive('leave', function () {
 	return function (scope, element, attr) {
 		element.bind('mouseleave', function () {
-			element.removeClass(attr.enter);
+			// element.removeClass(attr.enter);
 		});
 	};
-});
-
-function AppController($scope, Data) {
+})
+.controller('AppController', function ($scope, Data) {
 	$scope.data = Data;
-}
+
+	$scope.loadData = function () {
+		alert('loadData');
+	};
+});
