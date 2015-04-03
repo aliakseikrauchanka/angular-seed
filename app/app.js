@@ -33,7 +33,11 @@ config(['$routeProvider', function ($routeProvider) {
 })
 .directive('man', function () {
 	return {
-		scope: {},
+		scope: {
+			head: '@'
+		},
+		transclude: true,
+		template: '<div style="border: 1px solid black;margin:10px">really: {{head}} <div ng-transclude></div></div>',
 		restrict: 'E',
 		controller: function ($scope) {
 			$scope.parts = [];
@@ -78,6 +82,16 @@ myApp.directive('arm', function () {
 		require: 'man',
 		link: function  (scope, element, attr, man) {
 			man.addFoot();
+		}
+	};
+})
+
+.directive('enter', function () {
+	return {
+		link: function  (scope, element, attr, man) {
+			element.bind('mouseenter', function () {
+				scope.$apply(attr.enter);
+			});
 		}
 	};
 })
